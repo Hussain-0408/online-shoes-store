@@ -18,7 +18,7 @@ function ShoesContainer() {
 
   const [cart, setCart] = useState([]);
 
- 
+
   const increaseQty = (item) => {
 
     setCart(
@@ -66,7 +66,7 @@ function ShoesContainer() {
     <div className="root-container mt-0 w-100 h-100 ">
       <div className="child-container mt-0 w-100 h-100 d-flex flex-column">
         <div className="shoes-heading">
-          <h2 className="mt-3 ms-4 fs-3 font-serif p-1">Available Shoes</h2>
+          <h2 className="mt-3  fs-3 font-serif p-1">Available Shoes</h2>
         </div>
 
         <div className=' informaiton-container '>
@@ -75,10 +75,10 @@ function ShoesContainer() {
               {cardsData.map((card, index) => (
                 <div key={index} className="card card-bodyroot  bg-success">
                   <img src={card.img} className="card-img-top" alt={card.name} />
-                  <div className="card-body">
+                  <div className="card-body ">
                     <h5 className="card-title">{card.name}</h5>
                     <p className="card-text"> ${card.price}</p>
-                    <button onClick={() => handlechange(card)}>Add to Cart</button>
+                    <button onClick={() => handlechange(card)} type='button'>Add to Cart</button>
                   </div>
                 </div>
               ))}
@@ -94,17 +94,22 @@ function ShoesContainer() {
                     {cart.map((item, index) => (
                       <div
                         key={index}
-                        className="d-flex justify-content-between align-items-center border-bottom py-2"
+                        className="d-flex justify-content-between  align-items-center w-100 border-bottom  py-2"
                       >
-                        <img src={item.img} alt={item.name} width="60" />
-                        <p>{item.name}</p>
-                        <p>Price: ${item.price}</p>
-                        <div>
-                          <button onClick={() => decreaseQty(item)}>-</button>
-                          <span className="mx-2">{item.quantity}</span>
-                          <button onClick={() => increaseQty(item)}>+</button>
+                        <img src={item.img} alt={item.name} className='image ' />
+                        <div className='d-flex justify-content-around m-4  rounded-3  p-1 w-50 align-items-center'>
+                          <p className='mt-1'>{item.name}</p>
+                          <p className='mt-2'>Price: ${item.price}</p>
                         </div>
-                        <p>${item.price * item.quantity}</p>
+                        <div className='d-flex  p-1 buttons '>
+                          <div className='ms-3'>
+                          <button onClick={() => decreaseQty(item)} className='border rounded-2 '>-</button>
+                          <span className="mx-2">{item.quantity}</span>
+                          <button onClick={() => increaseQty(item)} className='border rounded-2'>+</button>
+                          </div>
+
+                          <p className='me-2 my-1 align-item-center justify-content-center '>${item.price * item.quantity}</p>
+                        </div>
                       </div>
                     ))}
 
