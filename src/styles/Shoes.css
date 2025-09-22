@@ -37,6 +37,7 @@
     margin: 4px;
     overflow-y: scroll;
     overflow-x: hidden;
+    font-family: sans-serif;
 
 }
 
@@ -57,8 +58,11 @@
 .buttons p{
     /* border: 2px solid red; */
     width: 70px;
+    font-size: 25px;
+    font-weight: 20px;
 
 }
+
 
 @media (max-width:786px) {
     .card-container {
@@ -66,6 +70,14 @@
         flex-direction: row;
         width: 90%;
         gap: 10px;
+    }
+    .buttons{
+    width: 200px;
+    /* border: 2px solid red; */
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    margin-left: 5px;
     }
 
     .shoes-card img {

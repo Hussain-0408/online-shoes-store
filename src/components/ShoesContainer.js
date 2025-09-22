@@ -44,22 +44,20 @@ function ShoesContainer() {
   };
 
 
-  const handlechange = (item) => {
-    const existing = cart.find((product) => product.name === item.name)
+  const handlechange = (items) => {
+    const existing = cart.find((product) => product.name === items.name)
 
     if (existing) {
       setCart(cart.map((product) =>
-        product.name === item.name ? { ...product, quantity: product.quantity + 1 } : product
+        product.name === items.name ? { ...product, quantity: product.quantity + 1 } : product
       ));
     } else {
-      setCart([...cart, { ...item, quantity: 0 }])
+      setCart([...cart, { ...items, quantity: 1 }])
     }
   }
 
   const total = cart.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
+    (sum, item) => sum + item.price * item.quantity, 0);
 
 
   return (
@@ -97,18 +95,18 @@ function ShoesContainer() {
                         className="d-flex justify-content-between  align-items-center w-100 border-bottom  py-2"
                       >
                         <img src={item.img} alt={item.name} className='image ' />
-                        <div className='d-flex justify-content-around m-4  rounded-3  p-1 w-50 align-items-center'>
-                          <p className='mt-1'>{item.name}</p>
+                        <div className='d-flex justify-content-around   rounded-3  p-1 w-50 align-items-center'>
+                          <p className='mt-1 me-4'>{item.name}</p>
                           <p className='mt-2'>Price: ${item.price}</p>
                         </div>
                         <div className='d-flex  p-1 buttons '>
-                          <div className='ms-3'>
-                          <button onClick={() => decreaseQty(item)} className='border rounded-2 '>-</button>
-                          <span className="mx-2">{item.quantity}</span>
-                          <button onClick={() => increaseQty(item)} className='border rounded-2'>+</button>
+                          <div className=' chaild-buttons'>
+                            <button onClick={() => decreaseQty(item)} className='border rounded-2 '>-</button>
+                            <span className="mx-2">{item.quantity}</span>
+                            <button onClick={() => increaseQty(item)} className='border rounded-2'>+</button>
                           </div>
 
-                          <p className='me-2 my-1 align-item-center justify-content-center '>${item.price * item.quantity}</p>
+                          <p className=' my-1 align-item-center justify-content-center '>${item.price * item.quantity}</p>
                         </div>
                       </div>
                     ))}
