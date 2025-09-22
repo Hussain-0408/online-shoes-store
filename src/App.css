@@ -1,10 +1,11 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App-container{
+  width: 100vw;
+  height: 100vh;
+  background-color:#e1d1b6;
+  position: fixed;
+  margin: 0px;
+  padding: 0px;
+  overflow-y: scroll;
 }
 
 @media (prefers-reduced-motion: no-preference) {

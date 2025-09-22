@@ -1,0 +1,124 @@
+import React, { useState } from 'react';
+import img2 from "../components/image/img2.jpg";
+import img3 from "../components/image/img3.jpg";
+import img4 from "../components/image/img4.jpg";
+import img5 from "../components/image/img5.jpg";
+import img6 from "../components/image/img6.jpg";
+
+import '../styles/Shoes.css';
+
+function ShoesContainer() {
+  const cardsData = [
+    { name: "Addidas Company", price: 200, img: img2 },
+    { name: "Oxer Company", price: 500, img: img3 },
+    { name: "Loafers", price: 400, img: img4 },
+    { name: "Sneakers", price: 300, img: img5 },
+    { name: "High Heels", price: 200, img: img6 }
+  ];
+
+  const [cart, setCart] = useState([]);
+
+ 
+  const increaseQty = (item) => {
+
+    setCart(
+      cart.map((product) =>
+        product.name === item.name
+          ? { ...product, quantity: product.quantity + 1 }
+          : product
+      )
+    );
+
+  };
+
+  const decreaseQty = (item) => {
+    setCart(
+      cart
+        .map((product) =>
+          product.name === item.name && product.quantity > 0
+            ? { ...product, quantity: product.quantity - 1 }
+            : product
+        )
+        .filter((product) => product.quantity > 0)
+    );
+  };
+
+
+  const handlechange = (item) => {
+    const existing = cart.find((product) => product.name === item.name)
+
+    if (existing) {
+      setCart(cart.map((product) =>
+        product.name === item.name ? { ...product, quantity: product.quantity + 1 } : product
+      ));
+    } else {
+      setCart([...cart, { ...item, quantity: 0 }])
+    }
+  }
+
+  const total = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+
+
+  return (
+    <div className="root-container mt-0 w-100 h-100 ">
+      <div className="child-container mt-0 w-100 h-100 d-flex flex-column">
+        <div className="shoes-heading">
+          <h2 className="mt-3 ms-4 fs-3 font-serif p-1">Available Shoes</h2>
+        </div>
+
+        <div className=' informaiton-container '>
+          <div className='information-childcontainer'>
+            <div className='shoes-card'>
+              {cardsData.map((card, index) => (
+                <div key={index} className="card card-bodyroot  bg-success">
+                  <img src={card.img} className="card-img-top" alt={card.name} />
+                  <div className="card-body">
+                    <h5 className="card-title">{card.name}</h5>
+                    <p className="card-text"> ${card.price}</p>
+                    <button onClick={() => handlechange(card)}>Add to Cart</button>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className='cart-container'>
+              <div className=" mt-0 p-3 w-100 bg-success text-white">
+                <h3>Cart</h3>
+                {cart.length === 0 ? (
+                  <p>No items in cart</p>
+                ) : (
+                  <div>
+                    {cart.map((item, index) => (
+                      <div
+                        key={index}
+                        className="d-flex justify-content-between align-items-center border-bottom py-2"
+                      >
+                        <img src={item.img} alt={item.name} width="60" />
+                        <p>{item.name}</p>
+                        <p>Price: ${item.price}</p>
+                        <div>
+                          <button onClick={() => decreaseQty(item)}>-</button>
+                          <span className="mx-2">{item.quantity}</span>
+                          <button onClick={() => increaseQty(item)}>+</button>
+                        </div>
+                        <p>${item.price * item.quantity}</p>
+                      </div>
+                    ))}
+
+                    <h4>Total: ${total}</h4>
+                  </div>
+                )}
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default ShoesContainer;
