@@ -106,11 +106,11 @@ function ShoesContainer() {
                         className="d-flex justify-content-between  align-items-center w-100 border-bottom  py-2"
                       >
                         <img src={item.img} alt={item.name} className='image ' />
-                        <div className='d-flex justify-content-around  image-name   rounded-3   w-50 align-items-center'>
+                        <div className='d-flex justify-content-between  image-name   rounded-3   w-50 align-items-center'>
                           <p className='mt-2 '>{item.name}</p>
                           <p className='mt-2'>Price: ${item.price}</p>
                         </div>
-                        <div className='d-flex  p-1 buttons   '>
+                        <div className='d-flex  p-1 buttons border   '>
                           <div className=' chaild-buttons '>
                             <button onClick={() => decreaseQty(item)} className='border rounded-2 '>-</button>
                             <span className="mx-2">{item.quantity}</span>
