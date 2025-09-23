@@ -13,7 +13,8 @@ function ShoesContainer() {
     { name: "Oxer Company", price: 500, img: img3 },
     { name: "Loafers", price: 400, img: img4 },
     { name: "Sneakers", price: 300, img: img5 },
-    { name: "High Heels", price: 200, img: img6 }
+    { name: "High Heels", price: 200, img: img6 },
+    { name: "small Heels", price: 200, img: img6 },
   ];
 
   const [cart, setCart] = useState([]);
@@ -95,8 +96,8 @@ function ShoesContainer() {
                         className="d-flex justify-content-between  align-items-center w-100 border-bottom  py-2"
                       >
                         <img src={item.img} alt={item.name} className='image ' />
-                        <div className='d-flex justify-content-around   rounded-3  p-1 w-50 align-items-center'>
-                          <p className='mt-1 me-4'>{item.name}</p>
+                        <div className='d-flex justify-content-between  image-name   rounded-3   w-50 align-items-center'>
+                          <p className='mt-2 '>{item.name}</p>
                           <p className='mt-2'>Price: ${item.price}</p>
                         </div>
                         <div className='d-flex  p-1 buttons '>
@@ -106,7 +107,7 @@ function ShoesContainer() {
                             <button onClick={() => increaseQty(item)} className='border rounded-2'>+</button>
                           </div>
 
-                          <p className=' my-1 align-item-center justify-content-center '>${item.price * item.quantity}</p>
+                          <p className=' my-1  '>${item.price * item.quantity}</p>
                         </div>
                       </div>
                     ))}
