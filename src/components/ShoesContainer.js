@@ -19,7 +19,6 @@ function ShoesContainer() {
 
   const [cart, setCart] = useState([]);
 
-
   const increaseQty = (item) => {
 
     setCart(
@@ -40,7 +39,7 @@ function ShoesContainer() {
             ? { ...product, quantity: product.quantity - 1 }
             : product
         )
-        .filter((product) => product.quantity > 0)
+        .filter((product) => product.quantity > 0) 
     );
   };
 
@@ -48,14 +47,20 @@ function ShoesContainer() {
   const handlechange = (items) => {
     const existing = cart.find((product) => product.name === items.name)
 
+    
     if (existing) {
       setCart(cart.map((product) =>
         product.name === items.name ? { ...product, quantity: product.quantity + 1 } : product
       ));
+
+
+
     } else {
-      setCart([...cart, { ...items, quantity: 1 }])
+        setCart([...cart, { ...items, quantity: 1 }] )
     }
+
   }
+
 
   const total = cart.reduce(
     (sum, item) => sum + item.price * item.quantity, 0);
@@ -77,7 +82,7 @@ function ShoesContainer() {
                   <div className="card-body ">
                     <h5 className="card-title">{card.name}</h5>
                     <p className="card-text"> ${card.price}</p>
-                    <button onClick={() => handlechange(card)} type='button'>Add to Cart</button>
+                    <button onClick={() => handlechange(card)}  type='button' >Add to Cart</button>
                   </div>
                 </div>
               ))}
@@ -108,6 +113,8 @@ function ShoesContainer() {
                           </div>
 
                           <p className=' my-1  '>${item.price * item.quantity}</p>
+
+                  
                         </div>
                       </div>
                     ))}
