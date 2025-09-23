@@ -18,6 +18,7 @@ function ShoesContainer() {
   ];
 
   const [cart, setCart] = useState([]);
+  // const [hello, setHello] = useState(true);
 
   const increaseQty = (item) => {
 
@@ -37,30 +38,29 @@ function ShoesContainer() {
         .map((product) =>
           product.name === item.name && product.quantity > 0
             ? { ...product, quantity: product.quantity - 1 }
-            : product
-        )
-        .filter((product) => product.quantity > 0) 
+            : product).filter((product) => product.quantity > 0)
     );
   };
-
 
   const handlechange = (items) => {
     const existing = cart.find((product) => product.name === items.name)
 
-    
+
     if (existing) {
-      setCart(cart.map((product) =>
-        product.name === items.name ? { ...product, quantity: product.quantity + 1 } : product
-      ));
+      setCart(cart.map((product) => product.name === items.name ? { ...product, quantity: product.quantity + 1 } : product));
+      // setHello(() => {
+      //   if (existing) {
+      //     return false
+      //   }
+      // });
 
-
-
-    } else {
-        setCart([...cart, { ...items, quantity: 1 }] )
+    }
+    else {
+      setCart([...cart, { ...items, quantity: 1 }]);
+      // setHello([...cart, { ...items, hello: true }]);
     }
 
   }
-
 
   const total = cart.reduce(
     (sum, item) => sum + item.price * item.quantity, 0);
@@ -82,7 +82,16 @@ function ShoesContainer() {
                   <div className="card-body ">
                     <h5 className="card-title">{card.name}</h5>
                     <p className="card-text"> ${card.price}</p>
-                    <button onClick={() => handlechange(card)}  type='button' >Add to Cart</button>
+                    {/* {hello ? <button onClick={() => handlechange(card)} type='button' >Add to Cart</button> : ""} */}
+                    {!cart.find((p) => p.name === card.name) && (
+                      <button
+                        onClick={() => handlechange(card)}
+                        type="button"
+                        className="btn btn-primary btn-sm me-2"
+                      >
+                        Add to Cart
+                      </button>
+                    )}
                   </div>
                 </div>
               ))}
@@ -114,7 +123,6 @@ function ShoesContainer() {
 
                           <p className=' my-1  '>${item.price * item.quantity}</p>
 
-                  
                         </div>
                       </div>
                     ))}
@@ -133,3 +141,4 @@ function ShoesContainer() {
 }
 
 export default ShoesContainer;
+
