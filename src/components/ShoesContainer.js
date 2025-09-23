@@ -18,7 +18,7 @@ function ShoesContainer() {
   ];
 
   const [cart, setCart] = useState([]);
-  const [disabled, setDisabled] = useState(false);
+  
 
   const increaseQty = (item) => {
 
@@ -48,11 +48,11 @@ function ShoesContainer() {
 
     if (existing) {
       setCart(cart.map((product) => product.name === items.name ? { ...product, quantity: product.quantity + 1 } : product));
-      setDisabled(true)
+    
     }
     else {
       setCart([...cart, { ...items, quantity: 1 }]);
-      setDisabled(false)
+      
     }
 
   }
@@ -81,9 +81,11 @@ function ShoesContainer() {
                       <button
                         onClick={() => handlechange(card)}
                         type="button"
-                        className="btn btn-primary  btn-sm me-2 add-button"
+                        disabled = {cart.find(product=> product.name === card.name)}
+                        className="btn btn-primary btn-sm me-2 add-button"
                       >
-                        {disabled ? "Add to Cat" : "Add me"}
+                        {cart.find(product=> product.name === card.name) ? "Added Me" : "Add to Cart"}
+                  
                       </button>
                     
                   </div>
@@ -114,8 +116,6 @@ function ShoesContainer() {
                             <span className="mx-2">{item.quantity}</span>
                             <button onClick={() => increaseQty(item)} className='border rounded-2'>+</button>
                           </div>
-
-            
 
                         </div>
                       </div>
