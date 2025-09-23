@@ -18,7 +18,6 @@ function ShoesContainer() {
   ];
 
   const [cart, setCart] = useState([]);
-  // const [hello, setHello] = useState(true);
 
   const increaseQty = (item) => {
 
@@ -48,16 +47,9 @@ function ShoesContainer() {
 
     if (existing) {
       setCart(cart.map((product) => product.name === items.name ? { ...product, quantity: product.quantity + 1 } : product));
-      // setHello(() => {
-      //   if (existing) {
-      //     return false
-      //   }
-      // });
-
     }
     else {
       setCart([...cart, { ...items, quantity: 1 }]);
-      // setHello([...cart, { ...items, hello: true }]);
     }
 
   }
@@ -82,12 +74,11 @@ function ShoesContainer() {
                   <div className="card-body ">
                     <h5 className="card-title">{card.name}</h5>
                     <p className="card-text"> ${card.price}</p>
-                    {/* {hello ? <button onClick={() => handlechange(card)} type='button' >Add to Cart</button> : ""} */}
                     {!cart.find((p) => p.name === card.name) && (
                       <button
                         onClick={() => handlechange(card)}
                         type="button"
-                        className="btn btn-primary btn-sm me-2"
+                        className="btn btn-primary btn-sm me-2 add-button"
                       >
                         Add to Cart
                       </button>
