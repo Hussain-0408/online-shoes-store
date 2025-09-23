@@ -18,6 +18,7 @@ function ShoesContainer() {
   ];
 
   const [cart, setCart] = useState([]);
+  const [disabled, setDisabled] = useState(false);
 
   const increaseQty = (item) => {
 
@@ -47,9 +48,11 @@ function ShoesContainer() {
 
     if (existing) {
       setCart(cart.map((product) => product.name === items.name ? { ...product, quantity: product.quantity + 1 } : product));
+      setDisabled(true)
     }
     else {
       setCart([...cart, { ...items, quantity: 1 }]);
+      setDisabled(false)
     }
 
   }
@@ -59,13 +62,13 @@ function ShoesContainer() {
 
 
   return (
-    <div className="root-container mt-0 w-100 h-100 ">
+    <div className="root-container container  mt-0 w-100 h-100 ">
       <div className="child-container mt-0 w-100 h-100 d-flex flex-column">
         <div className="shoes-heading">
-          <h2 className="mt-3  fs-3 font-serif p-1">Available Shoes</h2>
+          <h2 className="mt-3  fs-3 font-serif p-3">Available Shoes</h2>
         </div>
 
-        <div className=' informaiton-container '>
+        <div className=' informaiton-container  '>
           <div className='information-childcontainer'>
             <div className='shoes-card'>
               {cardsData.map((card, index) => (
@@ -74,15 +77,15 @@ function ShoesContainer() {
                   <div className="card-body ">
                     <h5 className="card-title">{card.name}</h5>
                     <p className="card-text"> ${card.price}</p>
-                    {!cart.find((p) => p.name === card.name) && (
+                    
                       <button
                         onClick={() => handlechange(card)}
                         type="button"
-                        className="btn btn-primary btn-sm me-2 add-button"
+                        className="btn btn-primary  btn-sm me-2 add-button"
                       >
-                        Add to Cart
+                        {disabled ? "Add to Cat" : "Add me"}
                       </button>
-                    )}
+                    
                   </div>
                 </div>
               ))}
