@@ -9,7 +9,7 @@ import '../styles/Shoes.css';
 
 function ShoesContainer() {
   const cardsData = [
-    { name: "Addidas Company", price: 200, img: img2 },
+    { name: "Sandles", price: 200, img: img2 },
     { name: "Oxer Company", price: 500, img: img3 },
     { name: "Loafers", price: 400, img: img4 },
     { name: "Sneakers", price: 300, img: img5 },
@@ -110,7 +110,7 @@ function ShoesContainer() {
                           <p className='mt-2 '>{item.name}</p>
                           <p className='mt-2'>Price: ${item.price}</p>
                         </div>
-                        <div className='d-flex  p-1 buttons border   '>
+                        <div className='d-flex  p-1 buttons    '>
                           <div className=' chaild-buttons '>
                             <button onClick={() => decreaseQty(item)} className='border rounded-2 '>-</button>
                             <span className="mx-2">{item.quantity}</span>

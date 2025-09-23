@@ -128,13 +128,10 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-        border: 2px solid red;
     }
     .image-name{
         width: 1rem;
-        /* justify-content: space-around; */
-        /* gap: 2px; */
-        border: 1px solid red;
+       
         margin-top: 0px;
         
     }
